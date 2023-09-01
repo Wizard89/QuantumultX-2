@@ -99,7 +99,7 @@ if (
   html = html.replace(/"status":\d+,"togo/, '"status":999,"togo');
 }
 if ($request.url.includes('.com/mall/active/') && /,"status":"\d"/.test(html)) {
-  html = html.replace(/,"status":"\d"/, ',"status":"0"');
+  html = html.replace(/,"status":"\d"/g, ',"status":"0"');
 }
 
 if (!html.includes('</head>')) {
@@ -951,6 +951,7 @@ try {
     .id77_clicker_main input,
     .id77_clicker_main select {
       margin-bottom: 15px;
+      font-size: 14px;
     }
 
     .id77_clicker_main {
@@ -959,8 +960,9 @@ try {
     }
 
     .id77_clicker_main input[type='number'],
+    .id77_clicker_main input[type='time'],
     .id77_clicker_main select {
-      border: 1px solid #e5e5e5;
+      border: 1px solid #e5e5e5 !important;
       border-radius: 5px;
       height: 36px;
       box-sizing: border-box;
@@ -1220,6 +1222,7 @@ try {
   // if (/<script.*v(C|c)onsole(\.min)?\.js.+?script>/i.test(html)) {
   //   html = html.replace(/<script.*v(C|c)onsole(\.min)?\.js.+?script>/i, ``);
   // }
+  html = html.replace(/(<head>)/i, `$1<meta charset="utf-8" />`);
   if (/(<(?:style|link|script)[\s\S]+?<\/head>)/i.test(html)) {
     html = html.replace(
       /(<(?:style|link|script)[\s\S]+?<\/head>)/i,
